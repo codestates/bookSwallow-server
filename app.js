@@ -12,7 +12,7 @@ const bookRouter = require('./routes/book');
 const commentRouter = require('./routes/comment');
 
 app.get('/', (req, res) => {
-  res.status(200).end();
+  res.status(200).send('Hello World');
 });
 
 app.use('/zzims', zzimRouter);
