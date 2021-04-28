@@ -2,7 +2,15 @@ const express = require('express');
 const cors = require('cors');
 const jwt = require('jsonwebtoken');
 // const { authToken } = require('../middleware/token');
-// const db = require('../db/connection');
+// const models = require('./models');
+// app.get('/books', async (req, res) => {
+//   try {
+//     const data = await models.book.findAll();
+//     return res.json(data);
+//   } catch (e) {
+//     return res.send(e);
+//   }
+// });
 
 const app = express();
 
