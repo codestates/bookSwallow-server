@@ -1,8 +1,7 @@
 const { user } = require('../../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
-const ACCESS_SECRET = process.env.accessSecret;
+const { hashPassword, generateAccessToken } = require('../../utils/userFunc');
 
 module.exports = async (req, res) => {
   const { username, password } = req.body;
@@ -18,10 +17,8 @@ module.exports = async (req, res) => {
     });
 
     if (username) userData.username = username;
-    if (password) {
-      const hashPassword = await bcrypt.hash(password, 10);
-      userData.password = hashPassword;
-    }
+    if (password) userData.password = hashPassword(password);
+
     await userData.save();
 
     const payload = {
@@ -29,9 +26,7 @@ module.exports = async (req, res) => {
       username: userData.username,
     };
 
-    const accessToken = jwt.sign(payload, ACCESS_SECRET, {
-      expiresIn: '1h',
-    });
+    const accessToken = generateAccessToken(payload);
 
     return res
       .status(200)
