@@ -1,6 +1,4 @@
-const { book } = require('../../models');
-const { user } = require('../../models');
-const { like } = require('../../models');
+const { book, user, like } = require('../../models');
 const sequelize = require('sequelize');
 
 module.exports = async (req, res) => {
