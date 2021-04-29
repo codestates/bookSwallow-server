@@ -5,6 +5,13 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    credentials: true,
+  }),
+);
 
 const zzimRouter = require('./routes/zzim');
 const userRouter = require('./routes/user');
