@@ -29,6 +29,7 @@ module.exports = async (req, res) => {
           .json({ message: '비밀번호가 일치하지 않습니다' });
       }
       const payload = {
+        id: userInfo.id,
         email: userInfo.email,
         username: userInfo.username,
       };

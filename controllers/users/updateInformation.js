@@ -20,6 +20,7 @@ module.exports = async (req, res) => {
     await userData.save();
 
     const payload = {
+      id: userData.id,
       email: userData.email,
       username: userData.username,
     };
