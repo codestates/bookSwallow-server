@@ -1,18 +1,6 @@
 const { book } = require('../../models');
-// const sequelize = require('sequelize');
-// const Op = sequelize.Op;
 
 module.exports = async (req, res) => {
-  // res.send('book/getBookSearch');
-
-  // console.log(req.params.id);
-
-  // const bookInfo = await book.findAll({
-  //   where: {
-  //     title: { [Op.like]: '%' + req.params.id + '%' },
-  //   },
-  // });
-
   const bookInfo = await book.findOne({
     where: {
       id: req.params.id,
