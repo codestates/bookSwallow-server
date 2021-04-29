@@ -14,6 +14,7 @@ module.exports = async (req, res) => {
       .findOrCreate({
         where: {
           email,
+          del_flag: 'N',
         },
         defaults: {
           email,
