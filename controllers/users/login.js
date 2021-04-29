@@ -12,13 +12,13 @@ module.exports = async (req, res) => {
   });
 
   if (!userInfo) {
-    res.status(403).send({ message: '유저 정보가 없습니다' });
+    res.status(404).send({ message: '유저 정보가 없습니다' });
   } else {
     // userInfo 존재 시 PW 비교 가능
     const normalPw = req.body.password; // 암호화 x PW
 
     if (userInfo.del_flag === 'Y') {
-      return res.status(403).json({ message: '유저 정보가 없습니다' });
+      return res.status(403).json({ message: '탈퇴한 회원입니다' });
     }
 
     try {
