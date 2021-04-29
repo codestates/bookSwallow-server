@@ -1,6 +1,5 @@
 const { user } = require('../../models');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 const { generateAccessToken } = require('../../utils/userFunc');
 
 const ACCESS_SECRET = process.env.accessSecret;

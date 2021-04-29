@@ -1,5 +1,4 @@
 const { user } = require('../../models');
-const bcrypt = require('bcrypt');
 const { hashPassword } = require('../../utils/userFunc');
 
 module.exports = async (req, res) => {
