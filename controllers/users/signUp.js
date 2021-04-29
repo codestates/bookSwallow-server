@@ -1,5 +1,5 @@
 const { user } = require('../../models');
-const bcrypt = require('bcrypt');
+const { hashPassword } = require('../../utils/userFunc');
 
 module.exports = async (req, res) => {
   const { email, username, password } = req.body;
@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const hashPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = hashPassword(password);
     await user
       .findOrCreate({
         where: {
@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
         defaults: {
           email,
           username,
-          password: hashPassword,
+          password: hashedPassword,
           social_type: '',
           del_flag: 'N',
         },
