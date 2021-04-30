@@ -2,8 +2,6 @@ const { user } = require('../../models');
 const bcrypt = require('bcrypt');
 const { generateAccessToken } = require('../../utils/userFunc');
 
-const ACCESS_SECRET = process.env.accessSecret;
-
 module.exports = async (req, res) => {
   const userInfo = await user.findOne({
     where: {
