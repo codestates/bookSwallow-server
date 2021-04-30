@@ -8,6 +8,7 @@ module.exports = async (req, res) => {
   const userInfo = await user.findOne({
     where: {
       email: req.body.email,
+      del_flag: 'N',
     },
   });
 
@@ -16,10 +17,6 @@ module.exports = async (req, res) => {
   } else {
     // userInfo 존재 시 PW 비교 가능
     const normalPw = req.body.password; // 암호화 x PW
-
-    if (userInfo.del_flag === 'Y') {
-      return res.status(403).json({ message: '유저 정보가 없습니다' });
-    }
 
     try {
       const result = await bcrypt.compare(normalPw, userInfo.password);
