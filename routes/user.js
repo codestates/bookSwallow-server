@@ -10,6 +10,6 @@ router.get('/logout', jwtMiddleware, usersController.users.logout);
 router.patch('/', jwtMiddleware, usersController.users.updateInformation);
 router.patch('/withdrawal', jwtMiddleware, usersController.users.withdrawal);
 router.post('/oauth/kakao', usersController.users.socialKakao);
-router.get('/oauth/google', usersController.users.socialGoogle);
+router.post('/oauth/google', usersController.users.socialGoogle);
 
 module.exports = router;
