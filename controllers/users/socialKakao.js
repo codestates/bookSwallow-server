@@ -3,14 +3,14 @@ const { user } = require('../../models');
 const axios = require('axios');
 const { generateAccessToken } = require('../../utils/userFunc');
 
-const KAKAO_CLIENT_ID = process.env.KAKAO_CLIENT_ID;
+const { KAKAO_CLIENT_ID, REDIRECT_URI } = process.env;
 
 module.exports = async (req, res) => {
   const { authorizationCode } = req.body;
 
   try {
     const kakaoRequest = await axios.post(
-      `https://kauth.kakao.com/oauth/token?code=${authorizationCode}&client_id=${KAKAO_CLIENT_ID}&redirect_uri=http://localhost:3000/login&grant_type=authorization_code`,
+      `https://kauth.kakao.com/oauth/token?code=${authorizationCode}&client_id=${KAKAO_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&grant_type=authorization_code`,
     );
     const kakaoToken = kakaoRequest.data.access_token;
     const kakaoUser = await axios.get('https://kapi.kakao.com/v2/user/me', {
