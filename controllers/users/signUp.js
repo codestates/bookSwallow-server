@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
         if (!exists) {
           return res.status(409).send({ message: 'already exists' });
         }
-        res.status(201).end(); // created
+        res.status(201).send({ message: 'success signup' }); // created
       })
       .catch((error) => {
         res.status(500).end(); // server error
