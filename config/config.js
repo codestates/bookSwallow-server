@@ -1,18 +1,18 @@
 require('dotenv').config();
 
 let {
-  userinfo = 'root',
-  password,
-  database = 'bookswallow_test',
-  host = '127.0.0.1',
-  database_port = '3306',
+  USERINFO = 'root',
+  PASSWORD,
+  DATABASE = 'bookswallow_test',
+  HOST = '127.0.0.1',
+  DATABASE_PORT = '3306',
 } = process.env;
 
 module.exports = {
-  username: userinfo,
-  password,
-  database,
-  host,
-  port: database_port,
+  username: USERINFO,
+  password: PASSWORD,
+  database: DATABASE,
+  host: HOST,
+  port: DATABASE_PORT,
   dialect: 'mysql',
 };

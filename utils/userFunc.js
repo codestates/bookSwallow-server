@@ -1,7 +1,8 @@
+require('dotenv').config();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const ACCESS_SECRET = process.env.accessSecret;
+const { ACCESS_SECRET } = process.env;
 
 module.exports = {
   hashPassword: (password) => {
