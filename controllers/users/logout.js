@@ -1,7 +1,8 @@
 module.exports = (req, res) => {
-  // res.send('user/logout');
-  req.headers.authorization = undefined;
-  // delete req.headers.authorization;
-  console.log(req.headers);
+  if (req.headers.authorization) {
+    delete req.headers.authorization;
+  } else {
+    res.clearCookie('authorization');
+  }
   res.status(205).json({ message: '로그아웃이 완료되었습니다' });
 };
