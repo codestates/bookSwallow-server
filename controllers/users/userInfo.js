@@ -4,6 +4,7 @@ module.exports = async (req, res) => {
   const userData = await user.findOne({
     where: {
       email: req.user.email,
+      del_flag: 'N',
     },
   });
 
