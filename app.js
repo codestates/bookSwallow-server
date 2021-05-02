@@ -6,6 +6,7 @@ const session = require('express-session');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   cors({
@@ -17,6 +18,9 @@ app.use(
 
 app.use(
   session({
+    secret: '@bookswallow',
+    resave: false,
+    saveUninitialized: true,
     cookie: {
       domain: 'localhost',
       path: '/',
