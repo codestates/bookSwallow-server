@@ -48,7 +48,7 @@ module.exports = async (req, res) => {
     res.cookie('authorization', `Bearer ${accessToken}`);
     res
       .status(200)
-      .json({ data: { accessToken: accessToken }, message: 'success login' });
+      .json({ accessToken: accessToken, message: 'success login' });
   }
 };
 
