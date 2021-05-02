@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 const app = express();
 
@@ -11,6 +12,18 @@ app.use(
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
+  }),
+);
+
+app.use(
+  session({
+    cookie: {
+      domain: 'localhost',
+      path: '/',
+      maxAge: 24 * 6 * 60 * 10000,
+      sameSite: 'none',
+      httpOnly: true,
+    },
   }),
 );
 
