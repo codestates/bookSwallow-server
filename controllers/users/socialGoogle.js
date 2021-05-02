@@ -1,5 +1,5 @@
 const { user } = require('../../models');
-const axios = reqiore('axios');
+const axios = require('axios');
 const { generateAccessToken } = require('../../utils/userFunc');
 require('dotenv').config();
 const { GOOGLE_CLIENT_ID, REDIRECT_URI } = process.env;
@@ -36,12 +36,12 @@ module.exports = async (req, res) => {
       },
     });
 
-    const [result, exists] = googleUserInfo;
+    const newUserInfo = googleUserInfo[0].dataValues;
 
     const payload = {
-      id: result.id,
-      email: result.email,
-      username: result.username,
+      id: newUserInfo.id,
+      email: newUserInfo.email,
+      username: newUserInfo.username,
     };
 
     const accessToken = generateAccessToken(payload);
