@@ -23,10 +23,12 @@ app.use(
     saveUninitialized: true,
     cookie: {
       domain: 'localhost',
+      // domain: 'bookswallow.shop',
       path: '/',
       maxAge: 24 * 6 * 60 * 10000,
       sameSite: 'none',
       httpOnly: true,
+      secure: true,
     },
   }),
 );
