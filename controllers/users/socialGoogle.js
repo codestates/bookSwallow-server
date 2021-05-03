@@ -56,7 +56,10 @@ module.exports = async (req, res) => {
     });
     res
       .status(200)
-      .json({ data: { accessToken: accessToken }, message: 'success login' });
+      .json({
+        data: { accessToken: accessToken, payload: payload },
+        message: 'success login',
+      });
   }
 };
 
