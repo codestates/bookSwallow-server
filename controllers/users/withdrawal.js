@@ -23,6 +23,11 @@ module.exports = async (req, res) => {
     );
 
     if (withdrawal) {
+      if (req.headers.authorization) {
+        delete req.headers.authorization;
+      } else {
+        res.clearCookie('authorization');
+      }
       res.status(201).json({ message: '회원탈퇴가 완료되었습니다' });
     }
   } else {
