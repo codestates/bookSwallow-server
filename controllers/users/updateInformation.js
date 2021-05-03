@@ -39,7 +39,10 @@ module.exports = async (req, res) => {
     });
     return res
       .status(200)
-      .json({ data: { accessToken: accessToken }, message: 'success update' });
+      .json({
+        data: { accessToken: accessToken, payload: payload },
+        message: 'success update',
+      });
   } catch (e) {
     res.status(400).end();
   }
