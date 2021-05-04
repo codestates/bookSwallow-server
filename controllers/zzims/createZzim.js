@@ -22,13 +22,24 @@ module.exports = async (req, res) => {
   } else if (!bookInfo) {
     res.status(404).send({ message: '잘못된 책 정보입니다' });
   } else {
-    await zzim
-      .create({
+    const alreadyZzim = await zzim.findOne({
+      where: {
         user_id: userInfo.id,
         book_id: bookInfo.id,
-      })
-      .then(() => {
-        res.status(200).json({ message: '찜하셨습니다' });
-      });
+      },
+    });
+
+    if (alreadyZzim) {
+      res.status(200).json({ message: '이미 찜하신 책입니다' });
+    } else {
+      await zzim
+        .create({
+          user_id: userInfo.id,
+          book_id: bookInfo.id,
+        })
+        .then(() => {
+          res.status(201).json({ message: '찜하셨습니다' });
+        });
+    }
   }
 };
