@@ -1,22 +1,16 @@
-const { book } = require('../../models');
 const { zzim } = require('../../models');
 
 module.exports = async (req, res) => {
   // req.user 에 모든 헤더 정보 존재
 
-  const bookInfo = await book.findOne({
-    where: {
-      id: req.body.book_id,
-    },
+  const targetZzim = await zzim.findOne({
+    where: { id: req.params.id, user_id: req.user.id },
   });
 
-  const zzimList = await zzim.findOne({
-    where: { book_id: bookInfo.id },
-  });
-  if (zzimList) {
+  if (targetZzim) {
     await zzim
       .destroy({
-        where: { book_id: bookInfo.id },
+        where: { id: req.params.id, user_id: req.user.id },
       })
       .then(() => {
         res
