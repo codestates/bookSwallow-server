@@ -1,4 +1,4 @@
-const { comment } = require('../../models');
+const { comment, user } = require('../../models');
 
 module.exports = async (req, res) => {
   // path parameter -> comments id
@@ -14,7 +14,18 @@ module.exports = async (req, res) => {
     });
     commentData.content = req.body.content;
     await commentData.save();
-    res.status(200).json(commentData);
+
+    const userData = await user.findOne({
+      id: req.user.id,
+    });
+    const returnData = {
+      ...commentData.dataValues,
+      user: {
+        username: userData.username,
+      },
+    };
+
+    res.status(200).json(returnData);
   } catch (e) {
     console.log('~');
     res.status(400).end();
