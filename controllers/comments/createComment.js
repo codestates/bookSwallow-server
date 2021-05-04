@@ -1,4 +1,4 @@
-const { comment } = require('../../models');
+const { comment, user } = require('../../models');
 
 module.exports = async (req, res) => {
   if (!req.params.id || !req.user.id || !req.body.content) {
@@ -11,7 +11,16 @@ module.exports = async (req, res) => {
       book_id: req.params.id,
       content: req.body.content,
     });
-    res.status(201).json(commentData);
+    const userData = await user.findOne({
+      id: req.user.id,
+    });
+    const returnData = {
+      ...commentData.dataValues,
+      user: {
+        username: userData.username,
+      },
+    };
+    res.status(201).json(returnData);
   } catch (e) {
     res.status(400).end();
   }
