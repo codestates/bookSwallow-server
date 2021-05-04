@@ -11,8 +11,10 @@ module.exports = async (req, res) => {
       book_id: req.params.id,
       content: req.body.content,
     });
+    console.log(commentData);
     res.status(201).json(commentData);
   } catch (e) {
-    res.status(400).end();
+    console.log('sdsdfdsf');
+    res.status(400).end(e);
   }
 };
