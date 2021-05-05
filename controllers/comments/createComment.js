@@ -12,8 +12,11 @@ module.exports = async (req, res) => {
       content: req.body.content,
     });
     const userData = await user.findOne({
-      id: req.user.id,
+      where: {
+        id: req.user.id,
+      },
     });
+
     const returnData = {
       ...commentData.dataValues,
       user: {
