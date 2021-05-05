@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
       where: {
         email,
         del_flag: 'N',
+        social_type: 'kakao',
       },
       defaults: {
         email,
