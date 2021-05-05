@@ -16,7 +16,9 @@ module.exports = async (req, res) => {
     await commentData.save();
 
     const userData = await user.findOne({
-      id: req.user.id,
+      where: {
+        id: req.user.id,
+      },
     });
     const returnData = {
       ...commentData.dataValues,
