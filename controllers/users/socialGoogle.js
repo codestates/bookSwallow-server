@@ -54,44 +54,9 @@ module.exports = async (req, res) => {
       httpOnly: true,
       secure: true,
     });
-    res
-      .status(200)
-      .json({
-        data: { accessToken: accessToken, payload: payload },
-        message: 'success login',
-      });
+    res.status(200).json({
+      data: { accessToken: accessToken, payload: payload },
+      message: 'success login',
+    });
   }
 };
-
-/*
-
-클라에서 해 주셔야 할 일들
-
-0. 클라이언트 환경 변수에 GOOGLE_LOGIN_URL과 GOOGLE_CLIENT_ID 생성
-
-
-1. window.location.assign(GOOGLE_LOGIN_URL) 로 구글 로그인 과정 진행
-
-GOOGLE_LOGIN_URL = "https://accounts.google.com/o/oauth2/v2/auth?client_id=125914028971-j6htog6luhhume79kpi5g8nlp23g1731.apps.googleusercontent.com&redirect_uri=http://localhost:3000/login/google&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile";
-
-"https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile";
-
-
-2. 1 과정 진행 후
-
-const url = new URL(window.location.href);
-    let hash = url.hash;
-    if (url.hash.length !== 0) {
-      hash = hash.split("=")[1].split("&")[0];
-      const authorizationCode = hash;
-      if (authorizationCode) {
-        axios.post('서버구글로그인엔드포인트', {
-          accessToken: authorizationCode 
-        });
-      }
-    }
-
-    진행
-    -> 진행 시 서버의 구글로그인 부분에서 req.body.accessToken으로 구글인증 후 받아온 엑세스토큰 활용해서 DB 핸들링 가능
-
- */

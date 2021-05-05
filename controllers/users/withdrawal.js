@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
         del_flag: 'Y',
         deleted_at: nowDay,
       },
-      { where: { email: req.user.email } },
+      { where: { email: req.user.email, id: req.user.id } },
     );
 
     if (withdrawal) {
