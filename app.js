@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://www.bookswallow.shop',
     methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     credentials: true,
   }),
@@ -22,8 +22,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      domain: 'localhost',
-      // domain: 'bookswallow.shop',
+      domain: 'bookswallow.shop',
       path: '/',
       maxAge: 24 * 6 * 60 * 10000,
       sameSite: 'none',
@@ -47,7 +46,7 @@ app.use('/users', userRouter);
 app.use('/books', bookRouter);
 app.use('/comments', commentRouter);
 
-const port = 4000;
+const port = 80;
 module.exports = app.listen(port, () => {
   console.log(`Listening to port ${port}`);
 });

@@ -30,8 +30,7 @@ module.exports = async (req, res) => {
 
     const accessToken = generateAccessToken(payload);
     res.cookie('authorization', `Bearer ${accessToken}`, {
-      // domain: 'bookswallow.shop',
-      domain: 'localhost',
+      domain: 'bookswallow.shop',
       path: '/',
       maxAge: 24 * 6 * 60 * 10000,
       sameSite: 'none',

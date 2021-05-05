@@ -29,20 +29,17 @@ module.exports = async (req, res) => {
     const accessToken = generateAccessToken(payload);
 
     res.cookie('authorization', `Bearer ${accessToken}`, {
-      // domain: 'bookswallow.shop',
-      domain: 'localhost',
+      domain: 'bookswallow.shop',
       path: '/',
       maxAge: 24 * 6 * 60 * 10000,
       sameSite: 'none',
       httpOnly: true,
       secure: true,
     });
-    return res
-      .status(200)
-      .json({
-        data: { accessToken: accessToken, payload: payload },
-        message: 'success update',
-      });
+    return res.status(200).json({
+      data: { accessToken: accessToken, payload: payload },
+      message: 'success update',
+    });
   } catch (e) {
     res.status(400).end();
   }

@@ -3,7 +3,7 @@ require('dotenv').config();
 let {
   USERINFO = 'root',
   PASSWORD,
-  DATABASE = 'bookswallow_test',
+  DATABASE = 'bookswallow_deploy',
   HOST = '127.0.0.1',
   DATABASE_PORT = '3306',
 } = process.env;
