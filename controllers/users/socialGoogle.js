@@ -26,6 +26,7 @@ module.exports = async (req, res) => {
       where: {
         email,
         del_flag: 'N',
+        social_type: 'google',
       },
       defaults: {
         email,
